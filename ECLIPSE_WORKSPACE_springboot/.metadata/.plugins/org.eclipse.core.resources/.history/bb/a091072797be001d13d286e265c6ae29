@@ -1,0 +1,25 @@
+package com.example.demo.entities;
+
+import java.sql.Date;
+
+import javax.persistence.Entity;
+import javax.persistence.Table;
+
+
+@Entity
+@Table(name="traveller")
+public class Traveller {
+
+	
+	
+	int travellerid;
+	
+	String fname;
+	
+	String lname;
+	
+	Date bdate;
+	
+	
+	
+}

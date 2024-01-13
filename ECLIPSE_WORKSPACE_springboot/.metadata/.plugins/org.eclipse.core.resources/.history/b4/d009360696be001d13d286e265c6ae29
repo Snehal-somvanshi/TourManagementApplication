@@ -1,0 +1,13 @@
+package com.example.demo.entities;
+
+import java.sql.Date;
+
+public class TravellerDummy {
+
+	
+	String fname,lname;
+   
+    char gender;
+    Date bdate;
+    int orderid;
+}

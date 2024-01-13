@@ -1,0 +1,57 @@
+package com.example.demo.controllers;
+
+import java.sql.Date;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+
+
+import com.example.demo.entities.BookTourDummy;
+import com.example.demo.entities.Orderrecord;
+import com.example.demo.entities.Transaction;
+import com.example.demo.services.TransactionService;
+;
+
+@CrossOrigin(origins = "http://localhost:3000")
+@Controller
+public class OrderRecordController {
+
+	@Autowired
+	TransactionService transactionserv;
+	
+	@PostMapping("/Booktourbytourist")
+	public Orderrecord InsertRecord(@RequestBody BookTourDummy booktobj) throws ParseException
+	{
+		System.out.println(booktobj);
+		
+		
+		 LocalDateTime myDateObj = LocalDateTime.now();  
+		    System.out.println("Before formatting: " + myDateObj);  
+		    DateTimeFormatter myFormatObj = DateTimeFormatter.ofPattern("dd-MM-yyyy HH:mm:ss");  
+		    
+		    String formattedDate = myDateObj.format(myFormatObj);  
+		    System.out.println("After formatting: " + formattedDate); 
+		    
+		    SimpleDateFormat  format = new SimpleDateFormat("dd-MMM-yyyy HH:mm:ss");
+		    java.util.Date date = format.parse(formattedDate);
+		    
+		    java.sql.Date sqlDate = new java.sql.Date(date.getTime());
+		
+		Transaction tranobj = new Transaction(booktobj.getTotamount(),booktobj.getPaymenttype(),sqlDate);
+		transactionserv.insertRecord(tranobj);
+		
+		
+		 
+	   return null;	
+		
+	}
+	
+	
+}

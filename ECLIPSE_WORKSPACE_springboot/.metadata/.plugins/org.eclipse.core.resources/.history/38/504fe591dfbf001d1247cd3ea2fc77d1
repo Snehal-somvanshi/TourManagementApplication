@@ -1,0 +1,39 @@
+package com.example.demo.repositories;
+
+import java.sql.Date;
+import java.util.List;
+
+import javax.transaction.Transactional;
+
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Modifying;
+import org.springframework.data.jpa.repository.Query;
+import org.springframework.stereotype.Repository;
+
+import com.example.demo.entities.Employee;
+import com.example.demo.entities.PlannedTour;
+
+@Transactional
+@Repository
+public interface PlannedTourRepository extends JpaRepository<PlannedTour, Integer> 
+{
+	@Query("SELECT e FROM PlannedTour e where e.packageidobj.package_id = :id ")
+	public PlannedTour getPlannedtourbyid(int id);
+	
+	@Query("SELECT p FROM PlannedTour p where p.status = 0")
+	public List<PlannedTour> getAllPlanTourForApproval();
+
+	@Modifying
+	@Query("update PlannedTour p set p.status =1 where p.tour_id =:id")
+	public int approveTour(int id);
+	
+	@Query(nativeQuery=true,value="select * from plannedtour  where packageid in(select package_id from package where locations like %:loc% and boardinglocation like %:bloc%)")
+	public List<PlannedTour> getAllPackagesByLocation(String loc,String bloc);
+
+	@Query("SELECT e FROM PlannedTour e where e.startdate >= :startdate ")
+	List<PlannedTour> getAllPackagesByDate(Date startdate);
+
+	
+	@Query(nativeQuery=true,value="select * from plannedtour  where startdate >= now()")
+	public List<PlannedTour> getAllPackagesForTourist();
+}

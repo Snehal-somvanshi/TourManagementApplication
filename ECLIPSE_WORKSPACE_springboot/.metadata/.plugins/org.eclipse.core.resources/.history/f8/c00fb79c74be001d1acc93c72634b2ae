@@ -1,0 +1,17 @@
+package com.example.demo.services;
+
+import org.springframework.stereotype.Service;
+
+import com.example.demo.entities.Orderrecord;
+
+@Service
+public class OrderRecordService {
+
+	public Orderrecord insertrecordFinal(Orderrecord orderobj) {
+		
+		return ;
+	}
+	
+	
+
+}

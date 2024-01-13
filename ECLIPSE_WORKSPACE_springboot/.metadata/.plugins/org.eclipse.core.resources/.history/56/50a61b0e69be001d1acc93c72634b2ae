@@ -1,0 +1,13 @@
+package com.example.demo.entities;
+
+public class Transaction {
+	
+	int transaction_id;
+	
+	double amount;
+	
+	String paymenttype;
+	
+	Date paymentdate;
+
+}

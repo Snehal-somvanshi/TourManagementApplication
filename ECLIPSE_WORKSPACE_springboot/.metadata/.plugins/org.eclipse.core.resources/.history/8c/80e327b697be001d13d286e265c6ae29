@@ -1,0 +1,40 @@
+package com.example.demo.entities;
+
+import java.sql.Date;
+
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.Table;
+
+
+@Entity
+@Table(name="traveller")
+public class Traveller {
+
+	
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	int travellerid;
+	
+	@Column
+	String fname;
+	
+	@Column
+	String lname;
+	
+	@Column
+	Date bdate;
+	
+
+	@ManyToOne
+	@JoinColumn(name="orderid")
+    Orderrecord orederobj;
+	
+	
+	
+}

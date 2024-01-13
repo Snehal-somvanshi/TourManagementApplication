@@ -1,0 +1,19 @@
+package com.example.demo.entities;
+
+import java.sql.Date;
+
+public class Traveller {
+
+	
+	
+	int travellerid;
+	
+	String fname;
+	
+	String lname;
+	
+	Date bdate;
+	
+	
+	
+}

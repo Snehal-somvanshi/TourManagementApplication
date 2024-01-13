@@ -1,0 +1,36 @@
+package com.example.demo.controllers;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+
+
+import com.example.demo.entities.BookTourDummy;
+import com.example.demo.entities.Orderrecord;
+import com.example.demo.entities.Transaction;
+import com.example.demo.services.TransactionService;
+;
+
+@CrossOrigin(origins = "http://localhost:3000")
+@Controller
+public class OrderRecordController {
+
+	@Autowired
+	TransactionService transactionserv;
+	
+	@PostMapping("/Booktourbytourist")
+	public Orderrecord regTourist(@RequestBody BookTourDummy booktobj)
+	{
+		System.out.println(booktobj);
+		
+//		Transaction tranobj = new Transaction(booktobj.getTotamount(),c);
+		transactionserv.insertRecord(booktobj.getTotamount(),booktobj.getPaymenttype());
+		 
+	   return null;	
+		
+	}
+	
+	
+}

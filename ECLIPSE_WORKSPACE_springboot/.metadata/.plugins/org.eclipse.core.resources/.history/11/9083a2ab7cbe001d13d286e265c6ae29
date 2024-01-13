@@ -1,0 +1,79 @@
+package com.example.demo.services;
+
+import java.sql.Date;
+import java.util.List;
+import java.util.NoSuchElementException;
+import java.util.Optional;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import com.example.demo.entities.PlannedTour;
+import com.example.demo.entities.Tourist;
+import com.example.demo.repositories.PlannedTourRepository;
+
+@Service
+public class PlannedTourService 
+{
+	@Autowired
+	PlannedTourRepository plannedtourrepo;
+	
+	public PlannedTour save (PlannedTour d)
+	{
+		return plannedtourrepo.save(d);
+	}
+
+	
+	// get plan tour by package id
+	public PlannedTour getPlannedtourbyid(int pid) {
+		
+		return plannedtourrepo.getPlannedtourbyid(pid);
+	}
+	
+
+	public List<PlannedTour> getAllPlanTourForApproval() {
+		// TODO Auto-generated method stub
+		return plannedtourrepo.getAllPlanTourForApproval();
+	}
+
+	public int approveTour(int id) {
+		// TODO Auto-generated method stub
+		return plannedtourrepo.approveTour(id);
+	}
+
+	public List<PlannedTour> getAllPackagesByLocation(String loc) {
+		// TODO Auto-generated method stub
+		return plannedtourrepo.getAllPackagesByLocation(loc);
+	}
+	
+      public List<PlannedTour> geAllPackagesByDate(Date startdate) 
+      {
+		return plannedtourrepo.getAllPackagesByDate(startdate);
+	}
+	
+      public List<PlannedTour> getAllPackagesForTourist() {
+    		// TODO Auto-generated method stub
+    		return plannedtourrepo.findAll();
+    	}
+      
+      
+    //get plannedtour by its primary key tour_id  for booking tour
+  	public Tourist getTouristByIdForBooking(int id)
+  	{
+
+  		Optional<Tourist> opt = regrepo.findById(id);
+  		Tourist t = null;
+  		try
+  		{
+  			t = opt.get();
+  		}
+  		catch(NoSuchElementException e)
+  		{
+  			t = null;
+  		}
+  		return t;
+  		
+  	}
+  	
+
+}

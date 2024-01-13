@@ -1,0 +1,21 @@
+package com.example.demo.entities;
+
+import java.sql.Date;
+
+import javax.persistence.Entity;
+import javax.persistence.Table;
+
+@Entity
+@Table(name="transaction")
+public class Transaction {
+	
+	
+	int transaction_id;
+	
+	double amount;
+	
+	String paymenttype;
+	
+	Date paymentdate;
+
+}

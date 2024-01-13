@@ -1,0 +1,24 @@
+package com.example.demo.entities;
+
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Table;
+
+
+@Entity
+@Table(name="orderrecord")
+public class Orderrecord 
+{
+
+	int order_id;
+	
+	int travellernumber;
+	
+	
+	trasactionid
+	
+	
+	touristid;
+	
+	tourid;
+}

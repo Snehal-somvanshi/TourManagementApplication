@@ -1,0 +1,11 @@
+package com.example.demo.entities;
+
+public class BookTourDummy
+{
+	
+	int touristid,tourid,travellernumber;
+	double totamount;
+	String paymenttype;
+	
+
+}
